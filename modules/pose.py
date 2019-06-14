@@ -16,6 +16,12 @@ class Pose(object):
     vars = (sigmas * 2) ** 2
     last_id = -1
     color = [0, 224, 255]
+    colors = [[255, 0, 0], [255, 85, 0], [255, 170, 0], [255, 255, 0], [170, 255, 0],
+    [85, 255, 0], [0, 255, 0], [0, 255, 85], [0, 255, 170], [0, 255, 255],
+    [0, 170, 255], [0, 85, 255], [0, 0, 255], [85, 0, 255], [170, 0, 255],
+    [255, 0, 255], [255, 0, 170], [255, 0, 85], [255, 0, 0]]
+    circle_width = 10
+    line_width = 6
 
     def __init__(self, keypoints, confidence):
         super().__init__()
@@ -28,7 +34,7 @@ class Pose(object):
                 continue
             found_keypoints[found_kpt_id] = keypoints[kpt_id]
             found_kpt_id += 1
-        self.bbox = cv2.boundingRect(found_keypoints)
+        #self.bbox = cv2.boundingRect(found_keypoints)
         self.id = None
 
     def update_id(self, id=None):
@@ -45,14 +51,14 @@ class Pose(object):
             global_kpt_a_id = self.keypoints[kpt_a_id, 0]
             if global_kpt_a_id != -1:
                 x_a, y_a = self.keypoints[kpt_a_id]
-                cv2.circle(img, (int(x_a), int(y_a)), 3, Pose.color, -1)
+                cv2.circle(img, (int(x_a), int(y_a)), Pose.circle_width, Pose.colors[part_id], -1)
             kpt_b_id = BODY_PARTS_KPT_IDS[part_id][1]
             global_kpt_b_id = self.keypoints[kpt_b_id, 0]
             if global_kpt_b_id != -1:
                 x_b, y_b = self.keypoints[kpt_b_id]
-                cv2.circle(img, (int(x_b), int(y_b)), 3, Pose.color, -1)
+                cv2.circle(img, (int(x_b), int(y_b)), Pose.circle_width, Pose.colors[part_id], -1)
             if global_kpt_a_id != -1 and global_kpt_b_id != -1:
-                cv2.line(img, (int(x_a), int(y_a)), (int(x_b), int(y_b)), Pose.color, 2)
+                cv2.line(img, (int(x_a), int(y_a)), (int(x_b), int(y_b)), Pose.colors[part_id], Pose.line_width)
 
 
 def get_similarity(a, b, threshold=0.5):
