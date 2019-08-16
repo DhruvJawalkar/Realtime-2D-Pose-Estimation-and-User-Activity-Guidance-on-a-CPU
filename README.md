@@ -8,6 +8,10 @@ Checkout branch <b>'sample-pose-demo'</b> for activity guidance demo on a sample
 
 <img src="https://raw.githubusercontent.com/DhruvJawalkar/Realtime-2D-Pose-Estimation-and-User-Activity-Guidance-on-a-CPU/master/demo.png" align="center" width="600"/>
 
+Entire pose routine:
+
+<img src="https://dopelemon.me/images/realtime-guidance/collage-resized.png" align="center" width="600"/>
+
 Checkout branch <b>'fsm'</b> for a general purpose approach to guidance via a configuration file.
 
 <img src="https://raw.githubusercontent.com/DhruvJawalkar/Realtime-2D-Pose-Estimation-and-User-Activity-Guidance-on-a-CPU/master/config_file.png" align="center" width="300"/>
